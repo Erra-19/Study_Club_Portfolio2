@@ -53,6 +53,7 @@ class ESUpdatecontroller extends Controller
         $barang->mudah_pecah = $request->input('mudah_pecah') === 'fragile' ? 1 : 0;
         $barang->save();
 
+        
         // Redirect to the EasySendDetail view with the updated data
         return redirect()->route('easysenddetail', ['data' => [
             [
@@ -67,7 +68,24 @@ class ESUpdatecontroller extends Controller
                 'jenis_barang' => $barang->jenis_barang->jenis_barang,
                 'berat_barang' => $barang->berat_barang,
                 'mudah_pecah' => $barang->mudah_pecah ? 'Yes' : 'No',
+                'id_kustomer' => $kustomer->id,
             ]
         ]]);
+    }
+    public function delete($id)
+    {
+        $kustomer = Kustomer::find($id);
+        $barang = Barang::where('id_kustomer',$id)->first();
+        $nomor_resi = Resitemp::where('id_kustomer', $id)->first();
+
+        if ($kustomer && $barang && $nomor_resi) {
+            $kustomer->delete();
+            $barang->delete();
+            $nomor_resi->delete();
+
+            return redirect('/EasySend')->with('success', 'Data berhasil dihapus');
+            } else {
+                return redirect('/EasySend')->with('error', 'Data tidak ditemukan');
+        }
     }
 }

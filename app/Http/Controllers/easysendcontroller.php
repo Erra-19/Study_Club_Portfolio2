@@ -80,5 +80,5 @@ class EasySendController extends Controller
     
     // Redirect to the EasySendDetail view with the submitted data and random number
     return redirect()->route('easysenddetail', ['data' => $data, 'nomor_resi' => $randomNumber]);
-    }    
+    }
 }

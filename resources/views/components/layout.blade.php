@@ -25,8 +25,8 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     
-    <link rel="stylesheet" href=".\css\bootstrap.min.css">
-    <link rel="stylesheet" href=".\css\style1.css">
+    <link rel="stylesheet" href="\css\bootstrap.min.css">
+    <link rel="stylesheet" href="\css\style1.css">
 </head>
 <body>
     {{ $slot }}

@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <div class="nav-item dropdown">
-                <a href="#" class="nav-item nav-link"><img src="img/172554545850959702.png" alt="login" style="height: 24px"></a>
+                <a href="#" class="nav-item nav-link"><img src="/img/172554545850959702.png"alt="login" style="height: 24px"></a> 
                 <div class="dropdown-menu fade-up m-0">
                     <a href="/login" class="dropdown-item">Login</a>
                     <a href="/register" class="dropdown-item">Register</a>

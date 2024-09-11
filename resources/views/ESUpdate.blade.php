@@ -10,7 +10,7 @@
                     <div class="bg-light p-4">
                         <form action="{{ route('EasySendUpdate', $kustomer->id) }}" method="post">
                             @csrf
-                            @method('PATCH')                            
+                            @method('PUT')                            
                             <div class="row g-3">
                                 <!-- Sender Information -->
                                 <div class="col-md-6">
@@ -125,5 +125,21 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>    
-</-x-layout>
+    <script src="js/main.js"></script>
+    <script>
+        const passwordInput = document.getElementById('password');
+        const togglePasswordButton = document.getElementById('toggle-password');
+    
+        togglePasswordButton.addEventListener('click', function() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePasswordButton.classList.add('fa-eye-slash');
+                togglePasswordButton.classList.remove('fa-eye');
+            } else {
+                passwordInput.type = 'password';
+                togglePasswordButton.classList.add('fa-eye');
+                togglePasswordButton.classList.remove('fa-eye-slash');
+            }
+        });
+    </script>
+</x-layout>

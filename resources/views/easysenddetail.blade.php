@@ -10,7 +10,7 @@
                     <p class="mb-4">Below are the detail of your pickup order.</p>
                     <div class="bg-light p-4">
                         <h3>Nomor Resi: {{ $nomor_resi }}</h3>
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" style="border: 1px;">
                                 <thead>
                                     <tr>
                                         <th>Nama Pengirim</th>
@@ -42,14 +42,14 @@
                                         <td>{{ $data['mudah_pecah'] }}</td>
                                     </tr>
                                 @endforeach
-                            </tbody>
-                        </table>
-                        <a href="{{ url('/EasySend/update', $data['id_kustomer']) }}" class="btn btn-primary">Update</a>
-                        <form action="/deletemobil2/" method="POST" onsubmit="return confirm('Are you sure you want to delete this record?');">
+                                </tbody>
+                            </table>
+                        <a href="{{ url('/EasySend/update', $data['id_kustomer']) }}" class="btn btn-danger" style="margin-left: 40%;">Update</a>
+                        <form action="{{ route('easysend.delete', $data['id_kustomer']) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this record?');"style="margin-left: 60%; margin-top:-3.1%;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>                    
+                        </form>
                     </div>
                 </div>
             </div>

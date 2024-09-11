@@ -32,11 +32,17 @@
                 <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">                
                     <h1 class="mb-5">Deliveries</h1>
                     <p class="mb-5">Check your delivery orders here!</p>
-                    <div class="d-flex align-items-center">
-                        
+                    <div class="d-flex align-items-center">                        
                         <div class="ps-4">                            
-                            <div class="col-12">
-                                <a href="/EasySendDetail" class="btn btn-primary w-100 py-3">EasySend</a>
+                            <div class="col-12 mb-3">
+                                <!-- Form Search Bar -->
+                                <form action="{{ route('tracking.search') }}" method="POST">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="text" name="resi" id="resi" class="form-control" placeholder="Enter your tracking number" required>
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
