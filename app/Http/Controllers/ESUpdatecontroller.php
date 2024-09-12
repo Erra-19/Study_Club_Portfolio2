@@ -21,7 +21,7 @@ class ESUpdatecontroller extends Controller
     {    
         $kustomer = Kustomer::find($id);
         $barang = Barang::where('id_kustomer', $id)->first();
-        // Validate the incoming request
+
         $request->validate([
             'nama_pengirim' => 'required|string|max:255',
             'email_pengirim' => 'required|email|max:255',
@@ -36,7 +36,6 @@ class ESUpdatecontroller extends Controller
             'mudah_pecah' => 'required|in:fragile,not_fragile',
         ]);
 
-        // Update kustomer information
         $kustomer->nama_pengirim = $request->input('nama_pengirim');
         $kustomer->email_pengirim = $request->input('email_pengirim');
         $kustomer->nomor_telpon_pengirim = $request->input('nomor_telpon_pengirim');
@@ -46,15 +45,12 @@ class ESUpdatecontroller extends Controller
         $kustomer->alamat_tujuan = $request->input('alamat_tujuan');
         $kustomer->save();
 
-        // Update barang information
         $barang->nama_barang = $request->input('nama_barang');
         $barang->id_jenis_barang = $request->input('id_jenis_barang');
         $barang->berat_barang = $request->input('berat_barang');
         $barang->mudah_pecah = $request->input('mudah_pecah') === 'fragile' ? 1 : 0;
         $barang->save();
 
-        
-        // Redirect to the EasySendDetail view with the updated data
         return redirect()->route('easysenddetail', ['data' => [
             [
                 'nama_pengirim' => $kustomer->nama_pengirim,

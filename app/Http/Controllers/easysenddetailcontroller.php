@@ -15,14 +15,11 @@ class EasySendDetailController extends Controller
         $data = $request->input('data');
         $nomor_resi = $request->input('nomor_resi');
 
-        // Use the data and random number to display the details in the view
         return view('EasySendDetail', compact('data', 'nomor_resi'));
     }
-    // EasySendDetailController.php
 
-public function update(Request $request, $id)
-{
-    // Call the update method in the EasySendController
-    return (new ESUpdateController)->update($request, $id);
-}
+    public function update(Request $request, $id)
+    {
+        return (new ESUpdateController)->update($request, $id);
+    }
 }

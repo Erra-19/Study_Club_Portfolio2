@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_resi');
             $table->unsignedBigInteger('id_staff');
+            $table->unsignedBigInteger('id_kendaraan');
             $table->unsignedBigInteger('id_kustomer');
             $table->unsignedBigInteger('id_barang');                                             
             $table->unsignedBigInteger('id_status');
@@ -29,6 +30,12 @@ return new class extends Migration
             $table->foreign('id_staff')
                 ->references('id')
                 ->on('user')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('id_kendaraan')
+                ->references('id')
+                ->on('kendaraan')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
