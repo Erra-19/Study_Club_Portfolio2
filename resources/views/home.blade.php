@@ -11,8 +11,8 @@
                 </div>
                 <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
                     <h6 class="text-secondary text-uppercase mb-3">About Us</h6>
-                    <h1 class="mb-5">Quick Transport and Logistics Solutions</h1>
-                    <p class="mb-5">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <h1 class="mb-5">A logistic website made for an assignment for the studyclub HIMSI</h1>
+                    <p class="mb-5">A logistic website made for an assignment for the studyclub HIMSI made by Errico Bagus Rahmatullah 3rd semester in Bina Sarana Informatika University</p>
                     <div class="row g-4 mb-5">
                         <h1 class="mb-5">Free pickup!</h1>
                     <p class="mb-5">Get free pickup order for your package from the closest collection point to you by filling this page!</p>                    
@@ -39,7 +39,7 @@
                                 <form action="{{ route('tracking.search') }}" method="POST">
                                     @csrf
                                     <div class="input-group">
-                                        <input type="text" name="resi" id="resi" class="form-control" placeholder="Enter your tracking number" required>
+                                        <input type="text" name="receipt" id="receipt" class="form-control" placeholder="Enter your tracking number" required>
                                         <button type="submit" class="btn btn-primary">Search</button>
                                     </div>
                                 </form>

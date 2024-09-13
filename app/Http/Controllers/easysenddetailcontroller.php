@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kustomer;
-use App\Models\Barang;
-use App\Models\Jenis_barang;
-use App\Models\Resitemp;
+use App\Models\Customer;
+use App\Models\Item;
+use App\Models\Item_category;
+use App\Models\Receipttemp;
 
 class EasySendDetailController extends Controller
 {
     public function index(Request $request)
     {
         $data = $request->input('data');
-        $nomor_resi = $request->input('nomor_resi');
+        $receipt_number = $request->input('receipt_number');
 
-        return view('EasySendDetail', compact('data', 'nomor_resi'));
+        return view('EasySendDetail', compact('data', 'receipt_number'));
     }
 
     public function update(Request $request, $id)

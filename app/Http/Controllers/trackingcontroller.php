@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kustomer;
-use App\Models\Barang;
-use App\Models\Jenis_barang;
-use App\Models\Resitemp;
+use App\Models\Customer;
+use App\Models\Item;
+use App\Models\Item_category;
+use App\Models\Receipttemp;
 
 class TrackingController extends Controller
 {
@@ -17,45 +17,45 @@ class TrackingController extends Controller
 
     public function search(Request $request)
     {
-        $resi = $request->input('resi');
-        $nomor_resi = $resi;
-        $resitemp = Resitemp::where('nomor_resi', $resi)->first();
+        $receipt = $request->input('receipt');
+        $receipt_number = $receipt;
+        $receipttemp = Receipttemp::where('receipt_number', $receipt)->first();
 
-        if (!$resitemp) {
-            return redirect()->back()->with('error', 'Nomor resi tidak ditemukan.');
+        if (!$receipttemp) {
+            return redirect()->back()->with('error', 'Receipt number not found');
         }
 
-        $kustomer = Kustomer::find($resitemp->id_kustomer);
+        $customer = Customer::find($receipttemp->customer_id);
 
-        if (!$kustomer) {
-            return redirect()->back()->with('error', 'Kustomer tidak ditemukan.');
+        if (!$customer) {
+            return redirect()->back()->with('error', 'Customer not found.');
         }
 
-        $barang = Barang::where('id_kustomer', $kustomer->id)->first();
+        $items = Item::where('customer_id', $customer->id)->first();
 
-        if (!$barang) {
-            return redirect()->back()->with('error', 'Barang tidak ditemukan.');
+        if (!$items) {
+            return redirect()->back()->with('error', 'Item not found.');
         }
 
-        $jenis_barang = Jenis_barang::find($barang->id_jenis_barang);
+        $item_categories = Item_category::find($items->category_id);
 
         $data = [
             [            
-                'nama_pengirim' => $kustomer->nama_pengirim,
-                'email_pengirim' => $kustomer->email_pengirim,
-                'nomor_telpon_pengirim' => $kustomer->nomor_telpon_pengirim,
-                'alamat_kirim' => $kustomer->alamat_kirim,
-                'nama_penerima' => $kustomer->nama_penerima,
-                'nomor_telpon_penerima' => $kustomer->nomor_telpon_penerima,
-                'alamat_tujuan' => $kustomer->alamat_tujuan,
-                'nama_barang' => $barang->nama_barang,
-                'jenis_barang' => $jenis_barang ? $jenis_barang->jenis_barang : 'Tidak Diketahui',
-                'berat_barang' => $barang->berat_barang,
-                'mudah_pecah' => $barang->mudah_pecah ? 'Yes' : 'No',
-                'id_kustomer' => $kustomer->id,
+                'sender_name' => $customer->sender_name,
+                'sender_email' => $customer->sender_email,
+                'sender_phone_number' => $customer->sender_phone_number,
+                'address_from' => $customer->address_from,
+                'receiver_name' => $customer->receiver_name,
+                'receiver_phone_number' => $customer->receiver_phone_number,
+                'address_to' => $customer->address_to,
+                'item_name' => $items->item_name,
+                'item_category' => $item_categories->category_name,
+                'item_weight' => $items->item_weight,
+                'fragile' => $items->fragile ? 'Yes' : 'No',
+                'customer_id' => $customer->id,
             ]
         ];
 
-        return view('EasySendDetail', ['data' => $data, 'nomor_resi' => $nomor_resi]);
+        return view('EasySendDetail', ['data' => $data, 'receipt_number' => $receipt_number]);
     }
 }

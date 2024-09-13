@@ -16,25 +16,25 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="nama" placeholder="Your Name" name="nama">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Your Name" name="name">
                                         <label for="name">Your Name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control @error('job') is-invalid @enderror" id="pekerjaan" placeholder="Your Job" name="pekerjaan">
+                                        <input type="text" class="form-control @error('job') is-invalid @enderror" id="staff_job" placeholder="Your Job" name="staff_job">
                                         <label for="job">Your Job</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control @error('staff_id') is-invalid @enderror" id="nomor_staff" placeholder="Staff ID" name="nomor_staff">
+                                        <input type="text" class="form-control @error('staff_id') is-invalid @enderror" id="staff_id" placeholder="Staff ID" name="staff_id">
                                         <label for="staff_id">Staff ID</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="tel" class="form-control @error('phone') is-invalid @enderror" id="nomor_telpon" placeholder="Phone Number" name="nomor_telpon">
+                                        <input type="tel" class="form-control @error('phone') is-invalid @enderror" id="staff_phone_numbers" placeholder="Phone Number" name="staff_phone_numbers">
                                         <label for="phone">Phone Number</label>
                                     </div>
                                 </div>

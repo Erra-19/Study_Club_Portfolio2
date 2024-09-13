@@ -16,11 +16,12 @@ class Staff extends Authenticatable
      *
      * @var array<int, string>
      */    
+    protected $table = 'staffs';
     protected $fillable = [
         'staff_id',
         'name',
-        'staff_job',        
-        'staff_phone_number',
+        'staff_job',
+        'staff_phone_numbers',
         'email',
         'password',
     ];

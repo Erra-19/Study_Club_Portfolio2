@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Models\Staff;
 
 class LoginController extends Controller
 {
@@ -16,16 +16,16 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        $user = User::where('email', $request->input('email'))->first();
+        $staff = Staff::where('email', $request->input('email'))->first();
 
-        if (!$user || !Hash::check($request->input('password'), $user->password)) {            
+        if (!$staff || !Hash::check($request->input('password'), $staff->password)) {            
             return back()->withErrors([
                 'email' => 'Invalid credentials.',
             ]);
         }
 
-        if ($user->nomor_staff && in_array($user->pekerjaan, ['admin', 'manager'])) {            
-            Auth::login($user);
+        if ($staff->staff_id && in_array($staff->staff_job, ['admin', 'manager'])) {            
+            Auth::login($staff);
             return redirect('/admin');
         } else {            
             return back()->withErrors([

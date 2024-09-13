@@ -3,77 +3,77 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kustomer;
-use App\Models\Barang;
-use App\Models\Jenis_barang;
-use App\Models\Resitemp;
+use App\Models\Customer;
+use App\Models\Item;
+use App\Models\Item_category;
+use App\Models\Receipttemp;
 
 class EasySendController extends Controller
 {
     public function dropdown()
     {
-        $jenisbarang = Jenis_barang::all();
-        return view('EasySend', compact('jenisbarang'));
+        $item_categories = Item_category::all();
+        return view('EasySend', compact('item_categories'));
     }    
 
     public function form(Request $request)
     {    
         $request->validate([
-            'nama_pengirim' => 'required|string|max:255',
-            'email_pengirim' => 'required|email|max:255',
-            'nomor_telpon_pengirim' => 'required|numeric',
-            'alamat_kirim' => 'required|string|max:255',
-            'nama_penerima' => 'required|string|max:255',
-            'nomor_telpon_penerima' => 'required|numeric',
-            'alamat_tujuan' => 'required|string|max:255',
-            'nama_barang' => 'required|string|max:255',
-            'id_jenis_barang' => 'required|exists:jenis_barang,id',
-            'berat_barang' => 'required|numeric',
-            'mudah_pecah' => 'required|in:fragile,not_fragile',
+            'sender_name' => 'required|string|max:255',
+            'sender_email' => 'required|email|max:255',
+            'sender_phone_number' => 'required|numeric',
+            'address_from' => 'required|string|max:255',
+            'receiver_name' => 'required|string|max:255',
+            'receiver_phone_number' => 'required|numeric',
+            'address_to' => 'required|string|max:255',
+            'item_name' => 'required|string|max:255',
+            'category_id' => 'required|exists:Item_categories,id',
+            'item_weight' => 'required|numeric',
+            'fragile' => 'required|in:fragile,not_fragile',
         ]);
     
-        $kustomer = Kustomer::create([
-            'nama_pengirim' => $request->input('nama_pengirim'),
-            'email_pengirim' => $request->input('email_pengirim'),
-            'nomor_telpon_pengirim' => $request->input('nomor_telpon_pengirim'),
-            'nama_penerima' => $request->input('nama_penerima'),
-            'nomor_telpon_penerima' => $request->input('nomor_telpon_penerima'),
-            'alamat_kirim' => $request->input('alamat_kirim'),
-            'alamat_tujuan' => $request->input('alamat_tujuan'),           
+        $customer = Customer::create([
+            'sender_name' => $request->input('sender_name'),
+            'sender_email' => $request->input('sender_email'),
+            'sender_phone_number' => $request->input('sender_phone_number'),
+            'receiver_name' => $request->input('receiver_name'),
+            'receiver_phone_number' => $request->input('receiver_phone_number'),
+            'address_from' => $request->input('address_from'),
+            'address_to' => $request->input('address_to'),           
         ]);
 
-        $barang = Barang::create([
-            'nama_barang' => $request->input('nama_barang'),
-            'id_jenis_barang' => $request->input('id_jenis_barang'),
-            'berat_barang' => $request->input('berat_barang'),
-            'mudah_pecah' => $request->input('mudah_pecah') === 'fragile' ? 1 : 0,
-            'id_kustomer' => $kustomer->id,
+        $item = Item::create([
+            'item_name' => $request->input('item_name'),
+            'category_id' => $request->input('category_id'),
+            'item_weight' => $request->input('item_weight'),
+            'fragile' => $request->input('fragile') === 'fragile' ? 1 : 0,
+            'customer_id' => $customer->id,
         ]);
 
         $data = [
             [
-                'nama_pengirim' => $kustomer->nama_pengirim,
-                'email_pengirim' => $kustomer->email_pengirim,
-                'nomor_telpon_pengirim' => $kustomer->nomor_telpon_pengirim,
-                'alamat_kirim' => $kustomer->alamat_kirim,
-                'nama_penerima' => $kustomer->nama_penerima,
-                'nomor_telpon_penerima' => $kustomer->nomor_telpon_penerima,
-                'alamat_tujuan' => $kustomer->alamat_tujuan,
-                'nama_barang' => $barang->nama_barang,
-                'jenis_barang' => $barang->jenis_barang->jenis_barang,
-                'berat_barang' => $barang->berat_barang,
-                'mudah_pecah' => $barang->mudah_pecah ? 'Yes' : 'No',
-                'id_kustomer' => $kustomer->id,
+                'sender_name' => $customer->sender_name,
+                'sender_email' => $customer->sender_email,
+                'sender_phone_number' => $customer->sender_phone_number,
+                'address_from' => $customer->address_from,
+                'receiver_name' => $customer->receiver_name,
+                'receiver_phone_number' => $customer->receiver_phone_number,
+                'address_to' => $customer->address_to,
+                'item_name' => $item->item_name,
+                'item_category' => $item->item_category->category_name,
+                'item_weight' => $item->item_weight,
+                'fragile' => $item->fragile ? 'Yes' : 'No',
+                'customer_id' => $customer->id,
             ]
         ]; 
 
         $randomNumber = rand(100000, 999999);
     
-        $resitemp = new Resitemp();
-        $resitemp->id_kustomer = $kustomer->id;
-        $resitemp->nomor_resi = $randomNumber;
-        $resitemp->save();
+        $Receipttemp = new Receipttemp();
+        $Receipttemp->customer_id = $customer->id;
+        $Receipttemp->receipt_number = $randomNumber;
+        $Receipttemp->save();
 
-        return redirect()->route('easysenddetail', ['data' => $data, 'nomor_resi' => $randomNumber]);
+        return redirect()->route('easysenddetail', ['data' => $data, 'receipt_number' => $randomNumber]);
     }
 }

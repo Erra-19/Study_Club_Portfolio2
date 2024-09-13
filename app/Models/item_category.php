@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class item_category extends Model
 {
+    protected $table = 'item_categories';
     protected $fillable = [
         'category_name',
         'category_desc',
     ];
+    
     public function items()
     {
         return $this->hasMany(items::class, 'category_id');

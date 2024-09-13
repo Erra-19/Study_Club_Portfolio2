@@ -15,7 +15,7 @@ class item extends Model
         'fragile',
     ];
 
-    public function item_categories()
+    public function item_category()
     {
         return $this->belongsTo(item_category::class, 'category_id');
     }
