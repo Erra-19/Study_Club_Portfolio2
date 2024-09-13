@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengiriman_status', function (Blueprint $table) {
+        Schema::create('shipment_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_status');
-            $table->string('deskripsi_status');
+            $table->string('status_name');
+            $table->string('status_desc');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengiriman_status');
+        Schema::dropIfExists('shipment_statuses');
     }
 };

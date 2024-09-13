@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kendaraan', function (Blueprint $table) {
+        Schema::create('item_categories', function (Blueprint $table) {
             $table->id();
-            $table->enum('jenis_kendaraan',['mobil','motor'])->default('mobil');
-            $table->string('nomor_polisi');
+            $table->string('category_name');
+            $table->string('category_desc');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kendaraan');
+        Schema::dropIfExists('item_categories');
     }
 };

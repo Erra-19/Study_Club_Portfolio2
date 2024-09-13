@@ -11,17 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resitemp', function (Blueprint $table) {
+        Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nomor_resi');
-            $table->unsignedBigInteger('id_kustomer');
+            $table->enum('vehicle_type',['car','bike'])->default('car');
+            $table->string('police_number');
             $table->timestamps();
-
-            $table->foreign('id_kustomer')
-                ->references('id')
-                ->on('kustomer')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
         });
     }
 
@@ -30,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resitemp');
+        Schema::dropIfExists('vehicles');
     }
 };

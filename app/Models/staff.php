@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Staff extends Authenticatable
 {
     use HasFactory, Notifiable;
 
@@ -15,13 +15,12 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
-     */
-    protected $table = 'user';
+     */    
     protected $fillable = [
-        'nama',
-        'pekerjaan',
-        'nomor_staff',
-        'nomor_telpon',
+        'staff_id',
+        'name',
+        'staff_job',        
+        'staff_phone_number',
         'email',
         'password',
     ];
@@ -47,5 +46,9 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
     }
 }

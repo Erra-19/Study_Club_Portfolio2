@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->enum('pekerjaan', ['admin', 'kurir', 'staff gudang', 'manager'])->default('admin');
-            $table->string('nomor_staff');
-            $table->string('nomor_telpon');
+        Schema::create('staffs', function (Blueprint $table) {
+            $table->string('staff_id')->primary();
+            $table->string('name');
+            $table->enum('staff_job', ['admin', 'courier', 'manager'])->default('admin');
+            $table->string('staff_phone_numbers');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -45,7 +44,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('staffs');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }

@@ -11,49 +11,49 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengiriman', function (Blueprint $table) {
+        Schema::create('shipments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_resi');
-            $table->unsignedBigInteger('id_staff');
-            $table->unsignedBigInteger('id_kendaraan');
-            $table->unsignedBigInteger('id_kustomer');
-            $table->unsignedBigInteger('id_barang');                                             
-            $table->unsignedBigInteger('id_status');
+            $table->unsignedBigInteger('receipt_id');
+            $table->string('staff_id');
+            $table->unsignedBigInteger('vehicle_id');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('item_id');                                             
+            $table->unsignedBigInteger('status_id');
             $table->timestamps();
 
-            $table->foreign('id_resi')
+            $table->foreign('receipt_id')
                 ->references('id')
-                ->on('resitemp')
+                ->on('receipttemps')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
                 
-            $table->foreign('id_staff')
-                ->references('id')
-                ->on('user')
+            $table->foreign('staff_id')
+                ->references('staff_id')
+                ->on('staffs')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('id_kendaraan')
+            $table->foreign('vehicle_id')
                 ->references('id')
-                ->on('kendaraan')
+                ->on('vehicles')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('id_kustomer')
+            $table->foreign('customer_id')
                 ->references('id')
-                ->on('kustomer')
+                ->on('customers')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('id_barang')
+            $table->foreign('item_id')
                 ->references('id')
-                ->on('barang')
+                ->on('items')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('id_status')
+            $table->foreign('status_id')
                 ->references('id')
-                ->on('pengiriman_status')
+                ->on('shipment_statuses')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
@@ -64,6 +64,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengiriman');
+        Schema::dropIfExists('shipment');
     }
 };

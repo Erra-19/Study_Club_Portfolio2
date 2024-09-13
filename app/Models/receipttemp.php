@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class kendaraan extends Model
+class receipttemp extends Model
 {
-    protected $table = 'kendaraan';
     protected $fillable = [
-        'jenis_kendaraan',
-        'nomor_polisi',            
+        'receipt_number',
+    ];
+    protected $casts = [
+        'receipt_number' => 'string',
     ];
     use HasFactory;
 }

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\pengiriman_status;
+use App\Models\Shipment_status;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,63 +13,63 @@ class statusseeder extends Seeder
      */
     public function run(): void
     {
-        $pengirimanstatus = [
+        $shipmentstatus = [
             [
-                'nama_status' => 'Pesanan Diterima',
-                'deskripsi_status' => 'Pesanan telah diterima dan sedang diproses oleh sistem',
+                'status_name' => 'Order Received',
+                'status_desc' => 'The order has been received and is being processed by the system',
             ],
             [
-                'nama_status' => 'Siap Dijemput',
-                'deskripsi_status' => 'Pesanan siap dijemput dan kurir dalam perjalanan',
+                'status_name' => 'Ready for Pickup',
+                'status_desc' => 'The order is ready for pickup, and the courier is on the way',
             ],
             [
-                'nama_status' => 'Sedang Dikemas',
-                'deskripsi_status' => 'Pesanan sedang dalam proses pengemasan untuk persiapan pengiriman',
+                'status_name' => 'Being Packed',
+                'status_desc' => 'The order is being packed in preparation for shipping',
             ],
             [
-                'nama_status' => 'Siap Dikirim',
-                'deskripsi_status' => 'Pesanan sudah dikemas dan siap dikirim ke alamat tujuan',
+                'status_name' => 'Ready to Ship',
+                'status_desc' => 'The order has been packed and is ready to be shipped to the destination',
             ],
             [
-                'nama_status' => 'Dalam Perjalanan',
-                'deskripsi_status' => 'Pesanan dalam perjalanan',
+                'status_name' => 'In Transit',
+                'status_desc' => 'The order is on the way',
             ],
             [
-                'nama_status' => 'Tiba di Pusat Sortit',
-                'deskripsi_status' => 'Pesanan tiba di puset penyortiran untuk diproses sebelum menuju ke alamat tujuan',
+                'status_name' => 'Arrived at Sorting Center',
+                'status_desc' => 'The order has arrived at the sorting center for processing before heading to the destination',
             ],
             [
-                'nama_status' => 'Perjalanan Menuju Penerima',
-                'deskripsi_status' => 'Pesanan dalam perjalanan menuju alamat tujuan',
+                'status_name' => 'En Route to Recipient',
+                'status_desc' => 'The order is on the way to the destination address',
             ],
             [
-                'nama_status' => 'Selesai',
-                'deskripsi_status' => 'Pesanan telah sampai dan dikonfirmasi oleh penerima',
+                'status_name' => 'Completed',
+                'status_desc' => 'The order has been delivered and confirmed by the recipient',
             ],
             [
-                'nama_status' => 'Tertuna',
-                'deskripsi_status' => 'Pengiriman mengalamai penundaan',
+                'status_name' => 'Delayed',
+                'status_desc' => 'The shipment is experiencing a delay',
             ],
             [
-                'nama_status' => 'Rusak',
-                'deskripsi_status' => 'Barang mengalami kerusakaan dalam pengiriman',
+                'status_name' => 'Damaged',
+                'status_desc' => 'The item was damaged during shipping',
             ],
             [
-                'nama_status' => 'Hilang',
-                'deskripsi_status' => 'Barang tidak ditemukan atau hilang dalam pengiriman',
+                'status_name' => 'Lost',
+                'status_desc' => 'The item was not found or lost during shipping',
             ],
             [
-                'nama_status' => 'Gagal',
-                'deskripsi_status' => 'Pengiriman gagal',
+                'status_name' => 'Failed',
+                'status_desc' => 'The shipment failed',
             ],
             [
-                'nama_status' => 'Perjalanan Kembali Menuju Pengirim',
-                'deskripsi_status' => 'Barang sedang dalam perjalanan kembali ke pengirim',
+                'status_name' => 'Returning to Sender',
+                'status_desc' => 'The item is on the way back to the sender',
             ],
-        ];
+        ];        
 
-        foreach ($pengirimanstatus as $status) {
-            pengiriman_status::create($status);
+        foreach ($shipmentstatus as $status) {
+            Shipment_status::create($status);
         }
     }
 }

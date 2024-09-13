@@ -5,14 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class resitemp extends Model
+class vehicle extends Model
 {
-    protected $table = 'resitemp';
     protected $fillable = [
-        'nomor_resi',
-    ];
-    protected $casts = [
-        'nomor_resi' => 'string',
+        'vehicle_type',
+        'police_number',            
     ];
     use HasFactory;
 }
