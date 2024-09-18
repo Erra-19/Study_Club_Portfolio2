@@ -5,7 +5,7 @@
         <div class="container contact-page py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-md-6 contact-form wow fadeIn" data-wow-delay="0.1s">
-                    <h6 class="text-secondary text-uppercase">Register New Staff</h6>
+                    <h6 class="text-secondary text-uppercase">Please Log In</h6>
                     <h1 class="mb-4">Only For Staff!</h1>
                     <p class="mb-4">If you are a customer, please visit <a href="/EasySend">EasySend</a> for pickup orders.</p>
                     <div class="bg-light p-4">

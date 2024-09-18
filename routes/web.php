@@ -7,6 +7,7 @@ use App\Http\Controllers\EasySendController;
 use App\Http\Controllers\EasySendDetailController;
 use App\Http\Controllers\ESUpdateController;
 use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\PickupController;
 
 Route::get('/', function () {
     return view('home');
@@ -36,3 +37,13 @@ Route::delete('/easysend/{id}', [ESUpdateController::class, 'delete'])->name('ea
 
 Route::get('/tracking',[TrackingController::class, 'index'])->name('tracking.index');
 Route::post('/tracking/search', [TrackingController::class, 'search'])->name('tracking.search');
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+Route::get('/admin/search', [PickupController::class, 'searchByReceiptNumber'])->name('admin.search');
+Route::post('/admin/search/{receipt_number}', [PickupController::class, 'assignCourier'])->name('admin.assignCourier');

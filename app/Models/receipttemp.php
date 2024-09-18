@@ -13,5 +13,9 @@ class receipttemp extends Model
     protected $casts = [
         'receipt_number' => 'string',
     ];
+    public function customer()
+    {
+        return $this->belongsTo(customer::class, 'customer_id');
+    }
     use HasFactory;
 }

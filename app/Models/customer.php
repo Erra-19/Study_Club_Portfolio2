@@ -15,6 +15,7 @@ class Customer extends Model
         'receiver_phone_number',
         'address_from',
         'address_to',
+        'status',
     ];
     use HasFactory;
 }

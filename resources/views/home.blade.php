@@ -80,7 +80,7 @@
         <div class="container py-5">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="text-secondary text-uppercase">Our Team</h6>
-                <h1 class="mb-5">Expert Team Members</h1>
+                <h1 class="mb-5">Team Members</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -88,8 +88,8 @@
                         <div class="overflow-hidden mb-4">
                             <img class="img-fluid" src="img/team-1.jpg" alt="">
                         </div>
-                        <h5 class="mb-0">Full Name</h5>
-                        <p>Designation</p>
+                        <h5 class="mb-0">Errico Bagus Rahmatullah</h5>
+                        <p>Full stack</p>
                         <div class="btn-slide mt-1">
                             <i class="fa fa-share"></i>
                             <span>

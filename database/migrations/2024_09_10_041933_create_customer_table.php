@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('receiver_phone_number');
             $table->string('address_from');
             $table->string('address_to');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

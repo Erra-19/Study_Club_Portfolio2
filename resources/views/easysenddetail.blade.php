@@ -10,46 +10,59 @@
                     <p class="mb-4">Below are the detail of your pickup order.</p>
                     <div class="bg-light p-4">
                         <h3>Receipt Number: {{ $receipt_number }}</h3>
-                            <table class="table table-bordered" style="border: 1px;">
-                                <thead>
-                                    <tr>
-                                        <th>Sender's Name</th>
-                                        <th>Sender's Email</th>
-                                        <th>Sender's Phone Number</th>
-                                        <th>Shipping Address</th>
-                                        <th>Recipient's Name</th>
-                                        <th>Recipient's Phone Number</th>
-                                        <th>Destination Address</th>
-                                        <th>Item Name</th>
-                                        <th>Item Type</th>
-                                        <th>Item Weight (grams)</th>
-                                        <th>Fragile</th>
-                                    </tr>
-                                </thead>                                
-                                <tbody>
-                                @foreach($data as $data)
-                                    <tr>
-                                        <td>{{ $data['sender_name'] }}</td>
-                                        <td>{{ $data['sender_email'] }}</td>
-                                        <td>{{ $data['sender_phone_number'] }}</td>
-                                        <td>{{ $data['address_from'] }}</td>
-                                        <td>{{ $data['receiver_name'] }}</td>
-                                        <td>{{ $data['receiver_phone_number'] }}</td>
-                                        <td>{{ $data['address_to'] }}</td>
-                                        <td>{{ $data['item_name'] }}</td>
-                                        <td>{{ $data['item_category'] }}</td>
-                                        <td>{{ $data['item_weight'] }}g</td>
-                                        <td>{{ $data['fragile'] }}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        <a href="{{ url('/EasySend/update', $data['customer_id']) }}" class="btn btn-danger" style="margin-left: 40%;">Update</a>
-                        <form action="{{ route('easysend.delete', $data['customer_id']) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this record?');"style="margin-left: 60%; margin-top:-3.1%;">
+                        <table class="table table-bordered" style="border: 1px;">
+                            <thead>
+                                <tr>
+                                    <th>Sender's Name</th>
+                                    <th>Sender's Email</th>
+                                    <th>Sender's Phone Number</th>
+                                    <th>Shipping Address</th>
+                                    <th>Recipient's Name</th>
+                                    <th>Recipient's Phone Number</th>
+                                    <th>Destination Address</th>
+                                    <th>Item Name</th>
+                                    <th>Item Type</th>
+                                    <th>Item Weight (grams)</th>
+                                    <th>Fragile</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>                                
+                            <tbody>
+                            @foreach($data as $data)
+                                <tr>
+                                    <td>{{ $data['sender_name'] }}</td>
+                                    <td>{{ $data['sender_email'] }}</td>
+                                    <td>{{ $data['sender_phone_number'] }}</td>
+                                    <td>{{ $data['address_from'] }}</td>
+                                    <td>{{ $data['receiver_name'] }}</td>
+                                    <td>{{ $data['receiver_phone_number'] }}</td>
+                                    <td>{{ $data['address_to'] }}</td>
+                                    <td>{{ $data['item_name'] }}</td>
+                                    <td>{{ $data['item_category'] }}</td>
+                                    <td>{{ $data['item_weight'] }}g</td>
+                                    <td>{{ $data['fragile'] }}</td>
+                                    <td>{{ $data['status'] }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        <a href="{{ url('/EasySend/update', $data['customer_id']) }}" 
+                            class="btn btn-danger" 
+                            style="margin-left: 40%;" 
+                            @if($data['status'] == 'confirmed') disabled @endif>
+                            Update
+                        </a>                         
+                        <form action="{{ route('easysend.delete', $data['customer_id']) }}" 
+                            method="POST" 
+                            onsubmit="return confirm('Are you sure you want to delete this record?');" 
+                            style="margin-left: 60%; margin-top:-3.1%;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                            <button type="submit" class="btn btn-danger"
+                            @if($data['status'] == 'confirmed') disabled @endif>
+                                Delete
+                            </button>
+                        </form>                         
                     </div>
                 </div>
             </div>

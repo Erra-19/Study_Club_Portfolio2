@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Item;
 use App\Models\Item_category;
 use App\Models\Receipttemp;
+use App\Models\Shipment_status;
 
 class EasySendController extends Controller
 {
@@ -39,7 +40,8 @@ class EasySendController extends Controller
             'receiver_name' => $request->input('receiver_name'),
             'receiver_phone_number' => $request->input('receiver_phone_number'),
             'address_from' => $request->input('address_from'),
-            'address_to' => $request->input('address_to'),           
+            'address_to' => $request->input('address_to'),
+            'status' => 'pending',
         ]);
 
         $item = Item::create([
@@ -63,9 +65,10 @@ class EasySendController extends Controller
                 'item_category' => $item->item_category->category_name,
                 'item_weight' => $item->item_weight,
                 'fragile' => $item->fragile ? 'Yes' : 'No',
+                'status' => $customer->status,
                 'customer_id' => $customer->id,
             ]
-        ]; 
+        ];
 
         $randomNumber = rand(100000, 999999);
     
@@ -74,6 +77,6 @@ class EasySendController extends Controller
         $Receipttemp->receipt_number = $randomNumber;
         $Receipttemp->save();
 
-        return redirect()->route('easysenddetail', ['data' => $data, 'receipt_number' => $randomNumber]);
+        return redirect()->route('easysenddetail', ['data' => $data, 'receipt_number' => $randomNumber,]);
     }
 }

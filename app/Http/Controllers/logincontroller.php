@@ -32,5 +32,5 @@ class LoginController extends Controller
                 'email' => 'You do not have permission to log in.',
             ]);
         }
-    }
+    }    
 }
