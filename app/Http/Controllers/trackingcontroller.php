@@ -52,6 +52,7 @@ class TrackingController extends Controller
                 'item_category' => $item_categories->category_name,
                 'item_weight' => $items->item_weight,
                 'fragile' => $items->fragile ? 'Yes' : 'No',
+                'status' => $customer->status,
                 'customer_id' => $customer->id,
             ]
         ];
